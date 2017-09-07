@@ -9,13 +9,107 @@
     <artifactId>genitus-tracker</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+
+
+
+
     <dependencies>
         <dependency>
             <groupId>org.genitus</groupId>
             <artifactId>genitus-cardiac</artifactId>
             <version>0.2.7</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.20</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.6.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-hdfs -->
+        <!-- impala jdbc-->
+        <dependency>
+            <groupId>com.cloudera.impala.jdbc</groupId>
+            <artifactId>ImpalaJDBC41.jar</artifactId>
+            <version>2.5.37</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cloudera.impala.jdbc</groupId>
+            <artifactId>hive_metastore.jar</artifactId>
+            <version>2.5.37</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cloudera.impala.jdbc</groupId>
+            <artifactId>hive_service.jar</artifactId>
+            <version>2.5.37</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cloudera.impala.jdbc</groupId>
+            <artifactId>ql.jar</artifactId>
+            <version>2.5.37</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cloudera.impala.jdbc</groupId>
+            <artifactId>TCLIServiceClient.jar</artifactId>
+            <version>2.5.37</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.thrift</groupId>
+            <artifactId>libthrift</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.5.8</version>
+        </dependency>
+
+
+
+
+
+        <!--
+                <dependency>
+                    <groupId>org.genitus</groupId>
+                    <artifactId>genitus-forceps</artifactId>
+                    <version>0.1.7</version>
+                </dependency>
+                -->
+        <dependency>
+            <groupId>org.genitus.centrifuge</groupId>
+            <artifactId>genitus-centrifuge-adtevak</artifactId>
+            <version>0.1.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.genitus</groupId>
+            <artifactId>genitus-sextant</artifactId>
+            <version>0.2.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-pool</groupId>
+            <artifactId>commons-pool</artifactId>
+            <version>1.6</version>
+        </dependency>
     </dependencies>
+
+
 
     <build>
         <plugins>

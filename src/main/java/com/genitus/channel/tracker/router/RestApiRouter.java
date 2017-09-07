@@ -15,6 +15,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.sql.SQLException;
 
 @Path("/tracker")
 @Produces(MediaType.APPLICATION_JSON)
@@ -35,12 +36,16 @@ public class RestApiRouter {
     }
 
 
-    @Path("search/{sid}") @GET @Timed
+    @Path("search/clientlog/{sid}") @GET @Timed
     public Response getLogBySid(@PathParam("sid") String sid) {
         try {
-            String response = "";
-            return Response.ok(response).build();
-        }catch (Exception e){
+            String response = kuduService.getClientLog(sid);
+            if (response!=null)
+                return Response.ok(response).build();
+            else
+                return Response.ok("Can find this log by this sid: "+sid).build();
+        }catch (SQLException e){
+            logger.error("Get client log error by sid: "+sid,e);
             return Response.status(500).build();
         }
     }
