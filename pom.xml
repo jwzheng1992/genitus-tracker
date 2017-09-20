@@ -83,18 +83,16 @@
 
 
 
-        <!--
                 <dependency>
                     <groupId>org.genitus</groupId>
                     <artifactId>genitus-forceps</artifactId>
                     <version>0.1.7</version>
                 </dependency>
-                -->
-        <dependency>
+    <!--    <dependency>
             <groupId>org.genitus.centrifuge</groupId>
             <artifactId>genitus-centrifuge-adtevak</artifactId>
             <version>0.1.7</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.genitus</groupId>
@@ -104,8 +102,30 @@
 
         <dependency>
             <groupId>commons-pool</groupId>
-            <artifactId>commons-pool</artifactId>
-            <version>1.6</version>
+        <artifactId>commons-pool</artifactId>
+        <version>1.6</version>
+
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.genitus</groupId>
+            <artifactId>genitus-karyo</artifactId>
+            <version>0.2.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache</groupId>
+            <artifactId>sunflower</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/dependencesJar/sunflower-share-0.3.0-SNAPSHOT.jar</systemPath>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
         </dependency>
     </dependencies>
 

@@ -22,6 +22,15 @@ class KuduModule(val kuduConf: KuduConf) extends AbstractModule {
     kuduClient
   }
 
+/*  //kudu service
+  @Singleton
+  @Provides
+  def provideKuduService(kuduClient: KuduClient): KuduService = {
+   val kuduService:KuduService  = new KuduService(kuduClient)
+    log.info("kudu service 启动成功")
+    kuduService
+  }*/
+
   //kudu service
   @Singleton
   @Provides
@@ -30,4 +39,5 @@ class KuduModule(val kuduConf: KuduConf) extends AbstractModule {
     log.info("kudu service 启动成功")
     kuduService
   }
+
 }

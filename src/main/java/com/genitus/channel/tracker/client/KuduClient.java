@@ -1,6 +1,7 @@
 package com.genitus.channel.tracker.client;
 
 //import com.genitus.channel.tracker.service.KuduService;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,32 +23,37 @@ public class KuduClient {
 
     private Connection connection;
 
+/*
+
+  private ComboPooledDataSource dataSource;
+
+    private Connection getConnection()throws SQLException{
+        return dataSource.getConnection();
+    }
+
+    private void realeaseConnection(Connection connection)throws SQLException{
+        //不会关闭连接 而是放回连接池
+        connection.close();
+    }
+*/
+
+
     /**
      * Constructor method.
-     * @param url
-     * @throws SQLException
+     * @param url  这是c3p0-config.xml文件中的一项的数据库名称，可以配置该数据库下的信息
      */
-    public KuduClient(String url){
-        logger.info("kudu client 初始化");
+    public KuduClient(String url) throws SQLException{
+        String kuduAddress="jdbc:impala://"+url+"/session";
+/*        String kuduAddress="jdbc:impala://"+url+"/session";
+        logger.info(kuduAddress);
+        dataSource=new ComboPooledDataSource("kudu");
+        dataSource.setJdbcUrl(kuduAddress);*/
         try {
-            String address = "jdbc:impala://"+url+"/session";
-            connection = DriverManager.getConnection(address);
+            connection = DriverManager.getConnection(kuduAddress);
         }catch (SQLException e){
-            logger.error("Kudu database connect failed",e);
-            throw new RuntimeException();
+            throw new SQLException("SQLException");
         }
     }
-
-    public void closeClient(){
-       try {
-           if (connection!=null)
-               connection.close();
-       }catch (SQLException e){
-           logger.warn("kudu client close exception",e);
-       }
-        logger.info("kudu client closed.");
-    }
-
 
     /**
      * Get data from kudu database using sid.
@@ -73,12 +79,14 @@ public class KuduClient {
      */
     private String getResult(String sql)throws SQLException{
         String json=null;
+     //   Connection connection = getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         ResultSet resultSet = preparedStatement.executeQuery();
         if ( resultSet.next())
             json = (String)resultSet.getObject(1);
         else
             logger.warn("Can not get client log by this sid. The sql sentence is: "+sql);
+     //   realeaseConnection(connection);
         return json;
     }
 
@@ -88,7 +96,8 @@ public class KuduClient {
     // test method
     public static void main(String[] args){
         try {
-            KuduClient kuduClient = new KuduClient("jdbc:impala://172.26.5.11:21050/session");
+          //  KuduClient kuduClient = new KuduClient("jdbc:impala://172.26.5.11:21050/session");
+            KuduClient kuduClient = new KuduClient("172.26.5.11:21050");
             System.out.println(kuduClient.getLog("iat27a8b8a8@sc15dcbb153fd8410480"));
             //   System.out.println(result);
         }catch (SQLException e){
